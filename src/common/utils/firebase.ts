@@ -2,7 +2,7 @@ import firebase from "firebase";
 
 export const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyAYUxNhRro1HHpB-4zeyBP-UGINnmNPFkE",
-  authDomain: "react-video-chat-tutorial.vercel.app",
+  authDomain: "react-voice-chat-tutorial.firebaseapp.com",
   projectId: "react-voice-chat-tutorial",
   storageBucket: "react-voice-chat-tutorial.appspot.com",
   messagingSenderId: "1022781403240",
