@@ -18,14 +18,17 @@ const Chat = () => {
   useEffect(() => {
     const chatRef = db.collection("chat");
 
-    chatRef.where("roomId", "==", roomId).onSnapshot((snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+    chatRef
+      .orderBy("createdAt")
+      .where("roomId", "==", roomId)
+      .onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-      setChats(data);
-    });
+        setChats(data);
+      });
   }, []);
 
   const addDocument = () => {
@@ -35,11 +38,9 @@ const Chat = () => {
 
     const createdAt = Date.now();
 
-    db.collection("chat")
-      .add({ message, roomId, uid, uname, createdAt })
-      .then((ref) => {
-        setMessage("");
-      });
+    db.collection("chat").add({ message, roomId, uid, uname, createdAt });
+
+    setMessage("");
   };
 
   return (
@@ -62,6 +63,9 @@ const Chat = () => {
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") addDocument();
+          }}
           placeholder="메시지를 입력해주세요"
         />
         <button onClick={addDocument}>전송</button>

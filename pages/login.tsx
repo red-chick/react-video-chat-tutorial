@@ -19,9 +19,17 @@ const login = () => {
   }, []);
 
   return (
-    <>
+    <section className="container">
       <GoogleLoginButton />
-    </>
+      <style jsx>{`
+        .container {
+          height: calc(100% - 70px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      `}</style>
+    </section>
   );
 };
 

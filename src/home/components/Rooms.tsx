@@ -23,11 +23,11 @@ const Rooms: FC = () => {
       <section className="container">
         <ul>
           {rooms.map((room) => (
-            <Link href={`/room/${room.id}`}>
-              <li>
+            <li key={room.id}>
+              <Link href={`/room/${room.id}`}>
                 <h1>{room.title}</h1>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </ul>
       </section>
@@ -39,7 +39,6 @@ const Rooms: FC = () => {
         }
         li {
           display: block;
-          padding: 20px;
           background: white;
           margin: 20px;
           border: 1px solid #eee;
@@ -51,6 +50,7 @@ const Rooms: FC = () => {
           margin-top: 0;
         }
         h1 {
+          padding: 20px;
           margin: 0;
         }
         li:hover {

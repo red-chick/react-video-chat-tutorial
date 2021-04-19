@@ -18,7 +18,16 @@ const GoogleLoginButton: FC = () => {
         router.push("/");
       });
   };
-  return <button onClick={login}>Google Login</button>;
+  return (
+    <>
+      <button onClick={login}>Sign in with Google</button>
+      <style jsx>{`
+        button {
+          padding: 8px 10px;
+        }
+      `}</style>
+    </>
+  );
 };
 
 export default GoogleLoginButton;
