@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { db } from "../../common/utils/firebase";
 
 const dateFormat = (createdAt) => {
@@ -7,7 +7,12 @@ const dateFormat = (createdAt) => {
   return `${date.getHours()}:${date.getMinutes()}`;
 };
 
-const Chat = () => {
+type Props = {
+  isOpen: boolean;
+  toggle: Function;
+};
+
+const Chat: FC<Props> = ({ isOpen, toggle }) => {
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -44,7 +49,7 @@ const Chat = () => {
   };
 
   return (
-    <section className="chat">
+    <section className={`chat ${isOpen ? "open" : ""}`}>
       <section className="messages">
         <ul>
           {chats.map((chat) => {
@@ -132,9 +137,22 @@ const Chat = () => {
           padding: 4px 20px;
         }
 
-        // .input-wrapper > button:hover {
-        //   background-color: rgba(66, 66, 66, 0.06);
-        // }
+        @media screen and (max-width: 786px) {
+          .chat {
+            position: fixed;
+            top: 100vh;
+            left: 0;
+            margin: 0;
+            width: 100vw;
+            height: calc(100vh - 140px);
+            z-index: 1;
+            transition: all 0.4s;
+          }
+
+          .chat.open {
+            top: 140px;
+          }
+        }
       `}</style>
     </section>
   );

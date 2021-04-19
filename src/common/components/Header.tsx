@@ -54,7 +54,7 @@ const AddNewRoom = () => {
   };
 
   return (
-    <>
+    <section className="container">
       <input
         type="text"
         onChange={(e) => setRoomTitle(e.target.value)}
@@ -66,8 +66,24 @@ const AddNewRoom = () => {
           padding: 8px;
           margin-left: 10px;
         }
+        @media screen and (max-width: 786px) {
+          .container {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: calc(100% - 40px);
+            display: flex;
+          }
+          .container > input {
+            margin: 0;
+          }
+          .container > input:first-child {
+            flex-grow: 1;
+            margin-right: 10px;
+          }
+        }
       `}</style>
-    </>
+    </section>
   );
 };
 

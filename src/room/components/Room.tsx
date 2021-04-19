@@ -40,6 +40,7 @@ const Room: FC = () => {
   }>({});
   const [enabledAudio, setEnabledAudio] = useState(true);
   const [enabledVideo, setEnabledVideo] = useState(true);
+  const [isOpenMobileChat, setIsOpenMobileChat] = useState(false);
 
   const {
     query: { roomId },
@@ -184,6 +185,15 @@ const Room: FC = () => {
 
   return (
     <section className="container">
+      <section className="mobile">
+        <button
+          onClick={() => {
+            setIsOpenMobileChat(!isOpenMobileChat);
+          }}
+        >
+          {isOpenMobileChat ? "Close" : "Open"} Chat
+        </button>
+      </section>
       <section className="left">
         <div className="local-stream-wrapper">
           <div id="local-player" className="stream local-stream"></div>
@@ -195,11 +205,16 @@ const Room: FC = () => {
             {enabledAudio ? "Audio Off" : "Audio On"}
           </button>
         </div>
-        <Chat />
+        <Chat
+          isOpen={isOpenMobileChat}
+          toggle={() => {
+            setIsOpenMobileChat(!isOpenMobileChat);
+          }}
+        />
       </section>
       <section className="right">
         {uids.map((uid) => (
-          <div key={uid} className={"steam-wrapper"}>
+          <div key={uid} className={"stream-wrapper"}>
             <div key={uid} className={"stream"} id={`player-${uid}`} />
             {muteVideoUids[uid] && <span className="video-off">Video Off</span>}
             {muteAudioUids[uid] && <span className="audio-off">Audio Off</span>}
@@ -225,8 +240,8 @@ const Room: FC = () => {
 
         .local-stream-wrapper > .video-button {
           position: absolute;
-          top: 10px;
-          right: 10px;
+          bottom: 10px;
+          left: 10px;
           padding: 4px 10px;
         }
 
@@ -254,7 +269,7 @@ const Room: FC = () => {
           margin-left: 0;
         }
 
-        .container > section.right > .steam-wrapper {
+        .container > section.right > .stream-wrapper {
           position: relative;
           margin: 0 20px 20px 0;
           border: 1px solid #eee;
@@ -263,7 +278,7 @@ const Room: FC = () => {
           background: black;
         }
 
-        .container > section.right > .steam-wrapper > .video-off {
+        .container > section.right > .stream-wrapper > .video-off {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -272,7 +287,7 @@ const Room: FC = () => {
           transform: translateX(-50%) translateY(-50%);
         }
 
-        .container > section.right > .steam-wrapper > .audio-off {
+        .container > section.right > .stream-wrapper > .audio-off {
           position: absolute;
           right: 10px;
           bottom: 10px;
@@ -282,6 +297,46 @@ const Room: FC = () => {
         .stream {
           width: 360px;
           height: 240px;
+        }
+
+        .mobile {
+          display: none;
+        }
+
+        @media screen and (max-width: 786px) {
+          .container {
+            flex-direction: column;
+          }
+
+          .container > section.right {
+            margin: 0;
+          }
+
+          .container > section.right > .stream-wrapper {
+            width: 100%;
+            margin: 0 20px 20px;
+          }
+
+          .stream {
+            width: 100%;
+            height: 240px;
+          }
+
+          .mobile {
+            display: block;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .mobile > button {
+            padding: 8px;
+          }
+
+          .chat {
+            display: none;
+          }
         }
       `}</style>
       <style jsx global>{`
