@@ -150,7 +150,8 @@ const Chat: FC<Props> = ({ isOpen, toggle }) => {
           }
 
           .chat.open {
-            top: 140px;
+            top: calc(140px + constant(safe-area-inset-bottom));
+            top: calc(140px + env(safe-area-inset-bottom));
           }
         }
       `}</style>
