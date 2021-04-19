@@ -18,7 +18,7 @@ const Header = () => {
           height: 70px;
           display: flex;
           align-items: center;
-          padding: 0 40px;
+          padding: 0 20px;
         }
         header > h1 {
           margin: 0;

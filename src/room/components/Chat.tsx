@@ -19,8 +19,8 @@ const Chat = () => {
     const chatRef = db.collection("chat");
 
     chatRef
-      .orderBy("createdAt")
       .where("roomId", "==", roomId)
+      .orderBy("createdAt")
       .onSnapshot((snapshot) => {
         const data = snapshot.docs.map((doc) => ({
           id: doc.id,
