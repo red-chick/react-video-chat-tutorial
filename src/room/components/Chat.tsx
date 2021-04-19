@@ -125,17 +125,12 @@ const Chat = () => {
         }
 
         .input-wrapper > button {
-          width: 72px;
-          height: 28px;
-          border: 1px solid #e0e0e0;
-          border-radius: 5px;
-          background-color: #fff;
-          cursor: pointer;
+          padding: 4px 20px;
         }
 
-        .input-wrapper > button:hover {
-          background-color: rgba(66, 66, 66, 0.06);
-        }
+        // .input-wrapper > button:hover {
+        //   background-color: rgba(66, 66, 66, 0.06);
+        // }
       `}</style>
     </section>
   );

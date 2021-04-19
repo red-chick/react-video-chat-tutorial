@@ -54,7 +54,7 @@ const Rooms: FC = () => {
           margin: 0;
         }
         li:hover {
-          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: none;
           cursor: pointer;
         }
       `}</style>
