@@ -144,7 +144,7 @@ const Chat: FC<Props> = ({ isOpen, toggle }) => {
             left: 0;
             margin: 0;
             width: 100vw;
-            height: calc(100vh - 140px - 56px);
+            height: calc(100vh - 140px - 140px);
             z-index: 1;
             transition: all 0.4s;
           }

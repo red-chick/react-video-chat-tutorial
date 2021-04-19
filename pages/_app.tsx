@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 const Header = dynamic(() => import("../src/common/components/Header"), {
   ssr: false,
@@ -7,6 +8,12 @@ const Header = dynamic(() => import("../src/common/components/Header"), {
 const App = ({ Component }) => {
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
+        />
+      </Head>
       <Header />
       <Component />
       <style jsx global>{`
