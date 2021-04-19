@@ -121,8 +121,8 @@ const Room: FC = () => {
 
   const leave = () => {
     localTracks.forEach((track) => {
-      track.stop();
-      track.close();
+      (track as IMicrophoneAudioTrack | ICameraVideoTrack).stop();
+      (track as IMicrophoneAudioTrack | ICameraVideoTrack).close();
     });
 
     localTracks = [];
